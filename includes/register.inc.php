@@ -9,6 +9,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
         require_once "dbh.inc.php";
+        require_once "register_model.inc.php";
+        require_once "register_contr.inc.php";
 
         $query = "INSERT INTO users (firstname, lastname, email, pwd) VALUES
         (:firstname, :lastname, :email, :pwd);";
