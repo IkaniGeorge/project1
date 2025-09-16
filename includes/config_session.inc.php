@@ -3,7 +3,7 @@
 ini_set('session.use_only_cookies', 1);
 ini_set('session.use_strict_mode', 1);
 
-session_set_cookies_params([
+session_set_cookie_params([
     'lifetime' => 1800,
     'domain' => 'localhost',
     'path' => '/',
@@ -14,7 +14,7 @@ session_set_cookies_params([
 session_start(); 
 //session regeneration after 30min
 if(!isset($_SESSION['last_generation'])){
-    regenerateSessionId();
+    regenerate_Session_Id();
     //session_regenerate_id();
     //$_SESSION['last_regeneration'] = time();
 
@@ -22,11 +22,11 @@ if(!isset($_SESSION['last_generation'])){
     $interval = 60 * 30;
 
     if(time() - $_SESSION['last_regeneration'] >= $interval){
-        regenerateSessionId();
+        regenerate_Session_Id();
     }
 }
 
-function regenerateSessionId() {
+function regenerate_Session_Id() {
         session_regenerate_id();
         $_SESSION['last_regeneration'] = time();
 }

@@ -3,6 +3,7 @@
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $firstname = $_POST["firstname"];
     $lastname = $_POST["lastname"];
+    $username = $_POST["username"];
     $email = $_POST["email"];
     $pwd = $_POST["pwd"];
  
@@ -12,27 +13,37 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         require_once "register_model.inc.php";
         require_once "register_contr.inc.php";
 
-        $query = "INSERT INTO users (firstname, lastname, email, pwd) VALUES
-        (:firstname, :lastname, :email, :pwd);";
+        //Error Handling
 
-        $stmt = $pdo->prepare($query);
+        $errors =[];
 
-        $stmt->bindParam(":firstname", $firstname);
-        $stmt->bindParam(":lastname", $lastname);
-        $stmt->bindParam(":pwd", $pwd);
-        $stmt->bindParam(":email", $email);
+        if(is_input_empty($firstname, $lastname, $username, $email, $pwd)){
+                $errors["empty_input"] = "Fill all field!";
+        }
+        if(is_email_inavalid($email)){ 
+            $errors["invalid_email"] = "Invalid Email address! "; 
+        }
+        if(is_username_taken($pdo, $username)){
+             $errors["username_taken"] = "Username already exist!";
+        }
 
-        $stmt->execute();
+        if(is_email_registered( $pdo, $email)){
+             $errors["email_registered"] = "Email already registerd!";
+        }
 
-        $pdo = null;
-        $stmt = null;
+        require_once 'config_session.inc.php';
 
-        header("Location: ../register.php");
-        die(); 
+        if($errors) {
+            $_SESSION["errors_register"] = $errors;
+             //assigning session variable to a value!
+             header("Location: ../register.php");
+        }
+
+       
     } catch (PDOException $e) {
-        die("querry failed:" . $e->getMessage);
+        die("querry failed:" . $e->getMessage());
     }
 }    else{
         header("Location: ../register.php");
-
+        die();
     }
