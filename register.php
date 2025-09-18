@@ -35,7 +35,7 @@
       </div>
       <div class="form-group">
         <label for="confirm-email">Confirm Email</label>
-        <input type="email" id="confirm-email" name="confirm-email" required>
+        <input type="email" id="email" name="email" required>
       </div>
       <div class="form-group">
         <label for="password">Password</label>
@@ -43,12 +43,10 @@
       </div>
       <div class="form-group">
         <label for="confirm-password">Confirm Password</label>
-        <input type="password" id="confirm-password" name="confirm-password" required>
+        <input type="pwd" id="pwd" name="pwd" required>
       </div>
       <button type="submit">Register</button>
     </form>
-
-    <p class='form-error'></p>
 
     <?php
 

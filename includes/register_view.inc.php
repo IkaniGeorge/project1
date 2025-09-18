@@ -10,10 +10,14 @@ function check_register_errors(){
         echo "<br>";
 
         foreach($errors as $error){
-            echo '<p>' . $error . '</p>';
+            echo '<p class="form-error">' . $error . '</p>';
         }
 
         unset($_SESSION['errors_register']);
+    }else if(isset($_GET['register']) && $_GET['register'] === 'Successful'){
+        echo '<br>';
+        echo '<p class="form-success">Registration Successful </p>';
+
     }
 }
 

@@ -25,17 +25,26 @@ function is_username_taken(object $pdo, string $username){ // code is in registe
     if(get_username($pdo, $username)){
         return true;
     }else{
-        return false;
+        return false; 
     }
     }
 
 function is_email_registered(object $pdo, string $email){ // code is in register_model.inc.php
-    if(get_username($pdo, $email)){
+    if(get_email($pdo, $email)){
         return true;
     }else{
         return false;
     }
-    }
+} 
+
+function create_user(object $pdo, string $firstname, string $lastname, string $username, string $email, string $pwd){
+
+    set_user($pdo, $firstname, $lastname, $username, $email, $pwd);
+
+}
+
+
+
 
 
 

@@ -37,9 +37,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["errors_register"] = $errors;
              //assigning session variable to a value!
              header("Location: ../register.php");
+             die();   
         }
 
-       
+
+        //Adding Create user to the register page
+         create_user($pdo, $firstname, $lastname, $username, $email, $pwd);
+
+         header("Location: ../register.php?register=Successful");
+
+              $pdo = null;
+             $stmt = null;
+        die();  
     } catch (PDOException $e) {
         die("querry failed:" . $e->getMessage());
     }
