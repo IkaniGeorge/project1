@@ -40,6 +40,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
              die();   
         }
 
+        //send data that the user submitted back to our register page
+        //so we can show it inside the input
+
+        $registerData = [
+            "firstname" => $firstname,
+            "lastname" => $lastname,
+            "username" => $username,
+            "email"=> $email
+        ]; // taking all our input from our signup form back in case first registration didnt go through
+        $_SESSION["register_data"] = $registerData; 
+
 
         //Adding Create user to the register page
          create_user($pdo, $firstname, $lastname, $username, $email, $pwd);
