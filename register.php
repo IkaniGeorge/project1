@@ -27,5 +27,6 @@
 
     check_register_errors();
     ?>
+  </div>
 </body>
 </html>

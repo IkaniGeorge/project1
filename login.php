@@ -1,3 +1,9 @@
+ <?php
+        require_once 'includes/login_view.inc.php';
+        require_once 'includes/config_session.inc.php';
+ ?>
+ 
+ 
  <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,20 +17,18 @@
   <div class="form-container">
     <h2>Login</h2>
     <form action="includes/login.inc.php" method="post">
-      <div class="form-group">
-        <label for="firstname">First Name</label>
-        <input type="text" id="firstname" name="firstname" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="pwd" id="pwd" name="pwd" required>
-      </div>
+      <?php
+      login_inputs();
+      ?>
+      </br>
       <button type="submit">Login</button>
     </form>
+     <?php
+
+    check_login_errors();
+    ?>
   </div>
+
+ 
 </body>
 </html>

@@ -54,7 +54,7 @@ function register_inputs() {
          
 
         echo ' <label for="pwd">Password</label>';
-     echo '<input type="pwd" id="pwd" name="pwd"> ';
+     echo '<input type="password" id="pwd" name="pwd"> ';
             echo "<br>";
      //echo '<button type="submit">Register</button>';
 
